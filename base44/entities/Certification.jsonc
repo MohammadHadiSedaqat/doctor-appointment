@@ -1,0 +1,33 @@
+{
+  "name": "Certification",
+  "type": "object",
+  "properties": {
+    "title_fa": {
+      "type": "string"
+    },
+    "title_en": {
+      "type": "string"
+    },
+    "title_ar": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "certificate_url": {
+      "type": "string"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "title_en",
+    "organization"
+  ]
+}

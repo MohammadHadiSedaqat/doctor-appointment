@@ -1,0 +1,39 @@
+{
+  "name": "GalleryImage",
+  "type": "object",
+  "properties": {
+    "image_url": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "doctor",
+        "clinic",
+        "certificate",
+        "conference",
+        "equipment",
+        "other"
+      ]
+    },
+    "caption_fa": {
+      "type": "string"
+    },
+    "caption_en": {
+      "type": "string"
+    },
+    "caption_ar": {
+      "type": "string"
+    },
+    "alt": {
+      "type": "string"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "image_url"
+  ]
+}

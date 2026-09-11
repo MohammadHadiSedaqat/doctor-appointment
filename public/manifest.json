@@ -1,0 +1,12 @@
+{
+  "name": "دکتر فاضل صداقت | ارتوپدی",
+  "short_name": "کلینیک ارتوپدی",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f766e",
+  "description": "خدمات جراحی استخوان و مفاصل دکتر فاضل صداقت.",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

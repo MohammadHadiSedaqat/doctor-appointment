@@ -1,0 +1,37 @@
+{
+  "name": "Prescription",
+  "type": "object",
+  "properties": {
+    "prescription_id": {
+      "type": "string",
+      "description": "RX-2026-000032"
+    },
+    "patient_id": {
+      "type": "string"
+    },
+    "doctor_id": {
+      "type": "string"
+    },
+    "visit_id": {
+      "type": "string"
+    },
+    "diagnosis": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "prescribed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "visible_to_patient": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "patient_id",
+    "prescribed_date"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "Service",
+  "type": "object",
+  "properties": {
+    "name_fa": {
+      "type": "string"
+    },
+    "name_en": {
+      "type": "string"
+    },
+    "name_ar": {
+      "type": "string"
+    },
+    "description_fa": {
+      "type": "string"
+    },
+    "description_en": {
+      "type": "string"
+    },
+    "description_ar": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string",
+      "description": "lucide icon name"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 30
+    },
+    "base_price": {
+      "type": "number",
+      "default": 0
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "name_en"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "Education",
+  "type": "object",
+  "properties": {
+    "degree_fa": {
+      "type": "string"
+    },
+    "degree_en": {
+      "type": "string"
+    },
+    "degree_ar": {
+      "type": "string"
+    },
+    "institution": {
+      "type": "string"
+    },
+    "field": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "start_year": {
+      "type": "number"
+    },
+    "end_year": {
+      "type": "number"
+    },
+    "description_fa": {
+      "type": "string"
+    },
+    "description_en": {
+      "type": "string"
+    },
+    "description_ar": {
+      "type": "string"
+    },
+    "certificate_url": {
+      "type": "string"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "degree_en",
+    "institution"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "InsurancePricingRule",
+  "type": "object",
+  "properties": {
+    "service_id": {
+      "type": "string"
+    },
+    "insurance_provider_id": {
+      "type": "string",
+      "description": "empty = self-pay"
+    },
+    "fixed_deduction": {
+      "type": "number",
+      "default": 0
+    },
+    "percentage_deduction": {
+      "type": "number",
+      "default": 0,
+      "description": "0-100"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "expiration_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "service_id"
+  ]
+}

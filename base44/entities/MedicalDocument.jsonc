@@ -1,0 +1,46 @@
+{
+  "name": "MedicalDocument",
+  "type": "object",
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "description": "DOC-2026-000087"
+    },
+    "patient_id": {
+      "type": "string"
+    },
+    "uploaded_by_id": {
+      "type": "string"
+    },
+    "document_type": {
+      "type": "string",
+      "enum": [
+        "lab_result",
+        "imaging",
+        "report",
+        "prescription",
+        "certificate",
+        "other"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "document_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "visible_to_patient": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "patient_id",
+    "title",
+    "file_url"
+  ]
+}

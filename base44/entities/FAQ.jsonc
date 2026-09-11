@@ -1,0 +1,36 @@
+{
+  "name": "FAQ",
+  "type": "object",
+  "properties": {
+    "question_fa": {
+      "type": "string"
+    },
+    "question_en": {
+      "type": "string"
+    },
+    "question_ar": {
+      "type": "string"
+    },
+    "answer_fa": {
+      "type": "string"
+    },
+    "answer_en": {
+      "type": "string"
+    },
+    "answer_ar": {
+      "type": "string"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "question_en",
+    "answer_en"
+  ]
+}

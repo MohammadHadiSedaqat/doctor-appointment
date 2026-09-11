@@ -1,0 +1,38 @@
+{
+  "name": "InsuranceProvider",
+  "type": "object",
+  "properties": {
+    "name_fa": {
+      "type": "string"
+    },
+    "name_en": {
+      "type": "string"
+    },
+    "name_ar": {
+      "type": "string"
+    },
+    "logo_url": {
+      "type": "string"
+    },
+    "description_fa": {
+      "type": "string"
+    },
+    "description_en": {
+      "type": "string"
+    },
+    "description_ar": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "name_en"
+  ]
+}

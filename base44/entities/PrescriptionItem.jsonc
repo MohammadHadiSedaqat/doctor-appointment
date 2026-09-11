@@ -1,0 +1,34 @@
+{
+  "name": "PrescriptionItem",
+  "type": "object",
+  "properties": {
+    "prescription_id": {
+      "type": "string"
+    },
+    "medication_id": {
+      "type": "string"
+    },
+    "medication_name": {
+      "type": "string"
+    },
+    "dosage": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "string"
+    },
+    "route": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "prescription_id",
+    "medication_name"
+  ]
+}

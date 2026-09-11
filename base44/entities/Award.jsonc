@@ -1,0 +1,41 @@
+{
+  "name": "Award",
+  "type": "object",
+  "properties": {
+    "title_fa": {
+      "type": "string"
+    },
+    "title_en": {
+      "type": "string"
+    },
+    "title_ar": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "year": {
+      "type": "number"
+    },
+    "description_fa": {
+      "type": "string"
+    },
+    "description_en": {
+      "type": "string"
+    },
+    "description_ar": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "title_en",
+    "organization"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "ContactMessage",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "unread",
+        "read",
+        "replied",
+        "archived"
+      ],
+      "default": "unread"
+    }
+  },
+  "required": [
+    "name",
+    "message"
+  ]
+}

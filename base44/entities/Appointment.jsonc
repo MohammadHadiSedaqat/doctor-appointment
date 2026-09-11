@@ -1,0 +1,82 @@
+{
+  "name": "Appointment",
+  "type": "object",
+  "properties": {
+    "appointment_id": {
+      "type": "string",
+      "description": "Human-readable e.g. APT-2026-000123"
+    },
+    "patient_id": {
+      "type": "string"
+    },
+    "doctor_id": {
+      "type": "string"
+    },
+    "service_id": {
+      "type": "string"
+    },
+    "insurance_provider_id": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "time": {
+      "type": "string",
+      "description": "HH:mm"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 30
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "requested",
+        "confirmed",
+        "cancelled",
+        "completed",
+        "no_show",
+        "in_consultation",
+        "checked_in"
+      ],
+      "default": "requested"
+    },
+    "base_price": {
+      "type": "number",
+      "default": 0
+    },
+    "deduction": {
+      "type": "number",
+      "default": 0
+    },
+    "final_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "currency": {
+      "type": "string",
+      "default": "IRR"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "unpaid",
+        "paid",
+        "partially_paid",
+        "refunded"
+      ],
+      "default": "unpaid"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "patient_id",
+    "service_id",
+    "date",
+    "time"
+  ]
+}
