@@ -2,17 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Stethoscope, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import { useI18n } from "@/i18n/I18nContext";
-import { site } from "@/config/site";
+import { site, getClinicAddress, getClinicPhoneHref } from "@/config/site";
+import { formatDigits } from "@/lib/format";
+import WorkingHours from "@/components/WorkingHours";
 
 const socialIcons = { facebook: Facebook, instagram: Instagram, linkedin: Linkedin };
-const unavailable = { fa: "اطلاعات تماس پس از تأیید کلینیک درج می‌شود.", en: "Contact details will be added after clinic verification.", ar: "ستُضاف بيانات الاتصال بعد التحقق من العيادة." };
 
 export default function PublicFooter() {
   const { t, lang } = useI18n();
   const name = site.name[lang] || site.name.en;
-  const address = site.address[lang] || site.city[lang] || site.address.en || site.city.en;
+  const address = getClinicAddress(lang);
   const contactItems = [
-    site.phone && { icon: Phone, value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+    site.phone && { icon: Phone, value: formatDigits(site.phone, lang), href: getClinicPhoneHref() },
     site.email && { icon: Mail, value: site.email, href: `mailto:${site.email}` },
     address && { icon: MapPin, value: address },
   ].filter(Boolean);
@@ -36,6 +37,7 @@ export default function PublicFooter() {
             {contactItems.length ? <ul className="mt-4 space-y-3 text-sm text-muted-foreground">{contactItems.map(({ icon: Icon, value, href }) => <li key={value} className="flex items-start gap-2.5"><Icon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{href ? <a href={href} dir="ltr" className="hover:text-primary">{value}</a> : <span>{value}</span>}</li>)}</ul> : <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{unavailable[lang] || unavailable.en}</p>}
           </div>
           <div>
+            <WorkingHours className="mb-6" />
             <h4 className="font-display font-semibold">{t("nav.appointment")}</h4><p className="mt-4 text-sm text-muted-foreground">{t("sections.ctaSub")}</p><Link to="/appointment" className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:shadow-glow">{t("common.book")}</Link>
           </div>
         </div>

@@ -7,15 +7,33 @@ export function buildMetadata(pathname, lang = 'fa', origin) {
   const canonical = meta.indexable && !meta.unknown ? getSiteUrl(pathname, lang) : '';
   const onPublicHost = !origin || !canonical || new URL(canonical).origin === origin;
   const indexable = Boolean(site.indexable && canonical && meta.indexable && !meta.unknown && onPublicHost);
+  const address = site.address?.[lang] ? {
+    '@type': 'PostalAddress',
+    streetAddress: site.address[lang],
+    ...(site.city?.[lang] ? { addressLocality: site.city[lang] } : {}),
+    ...(site.countryCode ? { addressCountry: site.countryCode } : {}),
+  } : undefined;
+  const openingHours = (site.workingHours || [])
+    .filter((period) => Array.isArray(period.dayOfWeek) && period.dayOfWeek.length && period.opens && period.closes)
+    .map((period) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: period.dayOfWeek.map((day) => `https://schema.org/${day}`),
+      opens: period.opens,
+      closes: period.closes,
+    }));
+  const practiceDetails = {
+    ...(site.phone ? { telephone: site.phone } : {}),
+    ...(site.email ? { email: site.email } : {}),
+    ...(address ? { address } : {}),
+    ...(openingHours.length ? { openingHoursSpecification: openingHours } : {}),
+  };
   const clinic = {
     '@type': 'MedicalClinic',
     '@id': getSiteUrl('/') ? `${getSiteUrl('/')}#practice` : undefined,
     name: site.name[lang],
     url: getSiteUrl('/') || undefined,
     medicalSpecialty: 'https://schema.org/Musculoskeletal',
-    ...(site.phone ? { telephone: site.phone } : {}),
-    ...(site.email ? { email: site.email } : {}),
-    ...(site.address?.[lang] ? { address: { '@type': 'PostalAddress', streetAddress: site.address[lang], ...(site.city?.[lang] ? { addressLocality: site.city[lang] } : {}) } } : {}),
+    ...practiceDetails,
   };
   const physician = {
     '@type': 'Physician',
@@ -24,13 +42,14 @@ export function buildMetadata(pathname, lang = 'fa', origin) {
     description: site.specialty[lang],
     medicalSpecialty: 'https://schema.org/Musculoskeletal',
     url: getSiteUrl('/about', lang) || undefined,
+    ...practiceDetails,
     ...(site.medicalLicense ? { identifier: site.medicalLicense } : {}),
     ...(site.portraitUrl ? { image: site.portraitUrl } : {}),
     ...(site.socialLinks?.length ? { sameAs: site.socialLinks.map((link) => typeof link === 'string' ? link : link.url).filter(Boolean) } : {}),
   };
   /** @type {Array<Record<string, any>>} */
   const graph = meta.unknown || !meta.indexable ? [] : [physician];
-  if (pathname === '/' || pathname === '/clinic') graph.push(clinic);
+  if (pathname === '/' || pathname === '/clinic' || pathname === '/contact') graph.push(clinic);
   if (meta.service) {
     graph.push({
       '@type': 'Service',

@@ -76,11 +76,43 @@ const serviceField = (service, field, lang, fallback = "") => localizedField(
   fallback,
 );
 
+function getLocalRouteCopy(kind, lang) {
+  const current = copy[lang][kind];
+  const city = site.city?.[lang];
+  if (!city || !['home', 'clinic', 'contact'].includes(kind)) return current;
+  const name = site.name[lang];
+  const address = site.address?.[lang];
+  const location = [city, address].filter(Boolean).join(lang === 'en' ? ', ' : '، ');
+  const contact = site.phone ? {
+    fa: ` تلفن هماهنگی: ${site.phone}.`,
+    en: ` Contact: ${site.phone}.`,
+    ar: ` هاتف التنسيق: ${site.phone}.`,
+  }[lang] : '';
+  const local = {
+    fa: {
+      home: { title: `${name} | جراح و متخصص ارتوپدی در ${city}`, description: `${name}، جراح و متخصص استخوان و مفاصل در ${city}؛ ارزیابی کمردرد، آرتروز، آسیب‌های مفصلی و مراقبت پس از تعویض مفصل.` },
+      clinic: { title: `کلینیک ارتوپدی در ${city} | ${name}`, description: `آدرس کلینیک ${name}: ${location}. اطلاعات مراجعه و ساعات پذیرش.${contact}` },
+      contact: { title: `تماس با کلینیک ارتوپدی در ${city} | ${name}`, description: `راه‌های ارتباط با کلینیک ${name} برای هماهنگی مراجعه و دریافت راهنمایی. آدرس: ${location}.${contact}` },
+    },
+    en: {
+      home: { title: `${name} | Orthopedic Surgeon in ${city}`, description: `${name}, orthopedic surgeon in ${city}, for assessment of back pain, osteoarthritis and joint injuries, and follow-up after joint replacement.` },
+      clinic: { title: `Orthopedic Clinic in ${city} | ${name}`, description: `${name}'s clinic: ${location}. View visiting information and opening hours.${contact}` },
+      contact: { title: `Contact the Orthopedic Clinic in ${city} | ${name}`, description: `Contact ${name}'s clinic for scheduling and guidance. Address: ${location}.${contact}` },
+    },
+    ar: {
+      home: { title: `${name} | اختصاصي جراحة العظام في ${city}`, description: `${name}، اختصاصي جراحة العظام والمفاصل في ${city}، لتقييم آلام الظهر والفصال العظمي وإصابات المفاصل والمتابعة بعد استبدال المفصل.` },
+      clinic: { title: `عيادة جراحة العظام في ${city} | ${name}`, description: `عنوان عيادة ${name}: ${location}. معلومات الزيارة وساعات الاستقبال.${contact}` },
+      contact: { title: `اتصل بعيادة العظام في ${city} | ${name}`, description: `تواصل مع عيادة ${name} للمواعيد والإرشاد. العنوان: ${location}.${contact}` },
+    },
+  };
+  return local[lang][kind];
+}
+
 export function getRouteMeta(pathname, lang = "fa") {
   pathname = pathname.replace(/\/+$/, '') || '/';
   const locale = validLang(lang);
   const kind = routeKinds[pathname];
-  if (kind) return { ...copy[locale][kind], kind, indexable: kind !== "appointment" };
+  if (kind) return { ...getLocalRouteCopy(kind, locale), kind, indexable: kind !== "appointment" };
 
   const match = pathname.match(/^\/services\/([^/]+)$/);
   if (match) {

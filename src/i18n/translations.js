@@ -28,7 +28,7 @@ export const translations = {
     dash: { home: "خانه", appointments: "نوبت‌ها", history: "پرونده پزشکی", prescriptions: "نسخه‌ها", medications: "داروها", documents: "مدارک", profile: "پروفایل", notifications: "اعلان‌ها", overview: "نمای کلی", today: "امروز", patients: "بیماران", revenue: "درآمد", reports: "گزارش‌ها", settings: "تنظیمات", nextAppt: "نوبت بعدی", prevAppts: "نوبت‌های قبلی", visits: "بازدیدها", activeMeds: "داروهای فعال", myAppts: "نوبت‌های من", myHistory: "پرونده پزشکی من", myPrescriptions: "نسخه‌های من", myMedications: "داروهای من", myDocuments: "مدارک من", myProfile: "پروفایل من" },
     // common
     common: { loading: "در حال بارگذاری...", save: "ذخیره", cancel: "انصراف", edit: "ویرایش", delete: "حذف", search: "جستجو", close: "بستن", back: "بازگشت", status: "وضعیت", date: "تاریخ", time: "ساعت", doctor: "پزشک", patient: "بیمار", price: "مبلغ", currency: "تومان", confirmed: "تأیید شده", requested: "در انتظار", cancelled: "لغو شده", completed: "تکمیل شده", noShow: "عدم حضور", noData: "اطلاعاتی موجود نیست", book: "دریافت نوبت", call: "تماس", directions: "مسیریابی" },
-    footer: { rights: "تمامی حقوق محفوظ است", quickLinks: "دسترسی سریع", contact: "تماس", address: "آدرس" },
+    footer: { rights: "تمامی حقوق محفوظ است", quickLinks: "دسترسی سریع", contact: "تماس", address: "آدرس", hours: "ساعات پذیرش" },
     announcement: "پذیرش نوبت جدید آغاز شد — همین حالا وقت خود را رزرو کنید",
   },
   en: {
@@ -41,7 +41,7 @@ export const translations = {
     auth: { login: "Login", register: "Register", email: "Email", password: "Password", firstName: "First Name", lastName: "Last Name", mobile: "Mobile", forgot: "Forgot password?", noAccount: "Don't have an account?", haveAccount: "Already have an account?", loginBtn: "Login", registerBtn: "Register", welcome: "Welcome" },
     dash: { home: "Home", appointments: "Appointments", history: "Medical History", prescriptions: "Prescriptions", medications: "Medications", documents: "Documents", profile: "Profile", notifications: "Notifications", overview: "Overview", today: "Today", patients: "Patients", revenue: "Revenue", reports: "Reports", settings: "Settings", nextAppt: "Next Appointment", prevAppts: "Previous Appointments", visits: "Visits", activeMeds: "Active Medications", myAppts: "My Appointments", myHistory: "My Medical History", myPrescriptions: "My Prescriptions", myMedications: "My Medications", myDocuments: "My Documents", myProfile: "My Profile" },
     common: { loading: "Loading...", save: "Save", cancel: "Cancel", edit: "Edit", delete: "Delete", search: "Search", close: "Close", back: "Back", status: "Status", date: "Date", time: "Time", doctor: "Doctor", patient: "Patient", price: "Amount", currency: "Toman", confirmed: "Confirmed", requested: "Pending", cancelled: "Cancelled", completed: "Completed", noShow: "No-show", noData: "No data available", book: "Book Appointment", call: "Call", directions: "Directions" },
-    footer: { rights: "All rights reserved", quickLinks: "Quick Links", contact: "Contact", address: "Address" },
+    footer: { rights: "All rights reserved", quickLinks: "Quick Links", contact: "Contact", address: "Address", hours: "Reception hours" },
     announcement: "New appointments are now open — book your visit today",
   },
   ar: {
@@ -54,7 +54,7 @@ export const translations = {
     auth: { login: "تسجيل الدخول", register: "تسجيل", email: "البريد الإلكتروني", password: "كلمة المرور", firstName: "الاسم", lastName: "اسم العائلة", mobile: "الجوال", forgot: "نسيت كلمة المرور؟", noAccount: "ليس لديك حساب؟", haveAccount: "لديك حساب بالفعل؟", loginBtn: "دخول", registerBtn: "تسجيل", welcome: "مرحبًا" },
     dash: { home: "الرئيسية", appointments: "المواعيد", history: "التاريخ الطبي", prescriptions: "الوصفات", medications: "الأدوية", documents: "المستندات", profile: "الملف الشخصي", notifications: "الإشعارات", overview: "نظرة عامة", today: "اليوم", patients: "المرضى", revenue: "الإيرادات", reports: "التقارير", settings: "الإعدادات", nextAppt: "الموعد التالي", prevAppts: "المواعيد السابقة", visits: "الزيارات", activeMeds: "الأدوية النشطة", myAppts: "مواعيدي", myHistory: "تاريخي الطبي", myPrescriptions: "وصفاتي", myMedications: "أدويتي", myDocuments: "مستنداتي", myProfile: "ملفي الشخصي" },
     common: { loading: "جارٍ التحميل...", save: "حفظ", cancel: "إلغاء", edit: "تعديل", delete: "حذف", search: "بحث", close: "إغلاق", back: "رجوع", status: "الحالة", date: "التاريخ", time: "الوقت", doctor: "الطبيب", patient: "المريض", price: "المبلغ", currency: "تومان", confirmed: "مؤكد", requested: "قيد الانتظار", cancelled: "ملغى", completed: "مكتمل", noShow: "لم يحضر", noData: "لا توجد بيانات", book: "حجز موعد", call: "اتصال", directions: "الاتجاهات" },
-    footer: { rights: "جميع الحقوق محفوظة", quickLinks: "روابط سريعة", contact: "اتصل", address: "العنوان" },
+    footer: { rights: "جميع الحقوق محفوظة", quickLinks: "روابط سريعة", contact: "اتصل", address: "العنوان", hours: "ساعات الاستقبال" },
     announcement: "تم فتح حجز المواعيد الجديدة — احجز زيارتك الآن",
   },
 };

@@ -1,3 +1,8 @@
+export function formatDigits(value, lang) {
+  const digits = lang === 'fa' ? '۰۱۲۳۴۵۶۷۸۹' : lang === 'ar' ? '٠١٢٣٤٥٦٧٨٩' : '0123456789';
+  return String(value).replace(/\d/g, (digit) => digits[Number(digit)]);
+}
+
 export function formatPrice(amount, lang) {
   const n = Number(amount || 0);
   const formatted = new Intl.NumberFormat(lang === "fa" ? "fa-IR" : lang === "ar" ? "ar-EG" : "en-US").format(n);

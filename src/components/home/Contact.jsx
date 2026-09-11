@@ -4,13 +4,15 @@ import { Send, Phone, Mail, MapPin, Loader2, CheckCircle2, AlertCircle } from "l
 import { useI18n } from "@/i18n/I18nContext";
 import AnimatedSection from "@/components/AnimatedSection";
 import { base44 } from "@/api/base44Client";
-import { site } from "@/config/site";
+import { site, getClinicAddress, getClinicPhoneHref } from "@/config/site";
+import { formatDigits } from "@/lib/format";
+import WorkingHours from "@/components/WorkingHours";
 import { useAuth } from "@/lib/AuthContext";
 
 const copy = {
-  fa: { sent: "پیام شما با موفقیت ارسال شد.", failed: "ارسال پیام ممکن نشد. لطفاً بعداً دوباره تلاش کنید.", unavailable: "فرم تماس موقتاً در دسترس نیست؛ اطلاعات کلینیک پس از تأیید درج می‌شود.", name: "نام و نام خانوادگی", phone: "شماره موبایل", email: "ایمیل (اختیاری)", message: "پیام شما (لطفاً فایل یا اطلاعات پزشکی ارسال نکنید)", submit: "ارسال پیام" },
-  en: { sent: "Your message was sent successfully.", failed: "We could not send your message. Please try again later.", unavailable: "The contact form is temporarily unavailable; clinic details will be added after verification.", name: "Full name", phone: "Mobile number", email: "Email (optional)", message: "Your message (please do not send medical files or records)", submit: "Send message" },
-  ar: { sent: "تم إرسال رسالتك بنجاح.", failed: "تعذر إرسال الرسالة. يرجى المحاولة لاحقًا.", unavailable: "نموذج الاتصال غير متاح مؤقتًا؛ ستُضاف بيانات العيادة بعد التحقق.", name: "الاسم الكامل", phone: "رقم الجوال", email: "البريد الإلكتروني (اختياري)", message: "رسالتك (يرجى عدم إرسال ملفات أو معلومات طبية)", submit: "إرسال الرسالة" },
+  fa: { sent: "پیام شما با موفقیت ارسال شد.", failed: "ارسال پیام ممکن نشد. لطفاً بعداً دوباره تلاش کنید.", unavailable: "فرم تماس موقتاً در دسترس نیست؛ برای هماهنگی با کلینیک تماس بگیرید.", name: "نام و نام خانوادگی", phone: "شماره موبایل", email: "ایمیل (اختیاری)", message: "پیام شما (لطفاً فایل یا اطلاعات پزشکی ارسال نکنید)", submit: "ارسال پیام" },
+  en: { sent: "Your message was sent successfully.", failed: "We could not send your message. Please try again later.", unavailable: "The contact form is temporarily unavailable; please call the clinic to arrange your visit.", name: "Full name", phone: "Mobile number", email: "Email (optional)", message: "Your message (please do not send medical files or records)", submit: "Send message" },
+  ar: { sent: "تم إرسال رسالتك بنجاح.", failed: "تعذر إرسال الرسالة. يرجى المحاولة لاحقًا.", unavailable: "نموذج الاتصال غير متاح مؤقتًا؛ يرجى الاتصال بالعيادة لتنسيق زيارتك.", name: "الاسم الكامل", phone: "رقم الجوال", email: "البريد الإلكتروني (اختياري)", message: "رسالتك (يرجى عدم إرسال ملفات أو معلومات طبية)", submit: "إرسال الرسالة" },
 };
 
 export default function Contact({ showHeading = true }) {
@@ -23,9 +25,9 @@ export default function Contact({ showHeading = true }) {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
-  const address = site.address[lang] || site.city[lang] || site.address.en || site.city.en;
+  const address = getClinicAddress(lang);
   const contacts = [
-    site.phone && { icon: Phone, label: t("footer.contact"), value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+    site.phone && { icon: Phone, label: t("footer.contact"), value: formatDigits(site.phone, lang), href: getClinicPhoneHref() },
     site.email && { icon: Mail, label: t("auth.email"), value: site.email, href: `mailto:${site.email}` },
     address && { icon: MapPin, label: t("footer.address"), value: address },
   ].filter(Boolean);
@@ -52,6 +54,7 @@ export default function Contact({ showHeading = true }) {
         <div className={`${showHeading ? "mt-12" : "mt-2"} grid gap-6 lg:grid-cols-5`}>
           <AnimatedSection className="space-y-4 lg:col-span-2">
             {contacts.length ? contacts.map(({ icon: Icon, label, value, href }) => <div key={label} className="flex items-start gap-3 rounded-2xl border border-border bg-white p-5 shadow-soft"><div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 text-primary"><Icon className="h-5 w-5" aria-hidden="true" /></div><div><div className="text-sm text-muted-foreground">{label}</div>{href ? <a href={href} dir="ltr" className="font-display font-semibold hover:text-primary">{value}</a> : <div className="font-display font-semibold">{value}</div>}</div></div>) : <div className="rounded-2xl border border-dashed border-border p-5 text-sm leading-relaxed text-muted-foreground">{missingContact}</div>}
+            <WorkingHours className="rounded-2xl border border-border bg-white p-5 shadow-soft" />
           </AnimatedSection>
           <AnimatedSection delay={0.1} className="lg:col-span-3">
             <form onSubmit={submit} className="rounded-3xl border border-border bg-white p-6 shadow-soft sm:p-8" noValidate={false}>

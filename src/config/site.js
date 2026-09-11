@@ -6,14 +6,42 @@ export const site = {
   experienceYears: 33,
   url: import.meta.env.VITE_PUBLIC_SITE_URL || '',
   indexable: import.meta.env.VITE_SITE_INDEXABLE === 'true',
-  phone: '',
+  phone: '025 37831456',
   email: '',
-  address: { fa: '', en: '', ar: '' },
-  city: { fa: '', en: '', ar: '' },
+  address: {
+    fa: 'دور شهر، روبروی پاساژ حریر، کوچه ۶.۱، ساختمان پزشکان سحر',
+    en: 'Dour Shahr, opposite Harir Shopping Center, Alley 6.1, Sahar Medical Building',
+    ar: 'دور شهر، مقابل مجمع حرير، زقاق ٦.١، مبنى سحر الطبي',
+  },
+  city: { fa: 'قم', en: 'Qom', ar: 'قم' },
+  countryCode: 'IR',
   medicalLicense: '',
   mapUrl: '',
   mapEmbedUrl: '',
   portraitUrl: '',
   socialLinks: [],
-  workingHours: [],
+  // Public reception hours; live appointment availability remains backend-owned.
+  workingHours: [
+    {
+      id: 'sat-wed',
+      day: { fa: 'شنبه تا چهارشنبه', en: 'Saturday–Wednesday', ar: 'السبت إلى الأربعاء' },
+      dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'],
+      opens: '18:00',
+      closes: '22:00',
+    },
+    {
+      id: 'thu',
+      day: { fa: 'پنجشنبه', en: 'Thursday', ar: 'الخميس' },
+      dayOfWeek: ['Thursday'],
+      opens: '18:00',
+      closes: '21:00',
+    },
+  ],
 };
+
+export const getClinicAddress = (lang = 'fa') => [
+  site.city[lang] || site.city.en,
+  site.address[lang] || site.address.en,
+].filter(Boolean).join(lang === 'en' ? ', ' : '، ');
+
+export const getClinicPhoneHref = () => `tel:${site.phone.replace(/\s/g, '').replace(/^0/, '+98')}`;
